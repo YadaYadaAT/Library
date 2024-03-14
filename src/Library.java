@@ -6,10 +6,25 @@ public class Library{
 private List<Title> titles=new ArrayList<>();
 private List<Member> members=new ArrayList<>();
 private List<Borrowable> borrowables=new ArrayList<>();
+private Scanner myScanObj=new Scanner(System.in);
 
     public Library(){
+        System.out.println("Hello");
+        System.out.println("How I may serve you?");
+        int choice;
+        do{
+            choice=myScanObj.nextInt();
+            myScanObj.nextLine();
+            System.out.println("1.I would like to borrow a book");
+            System.out.println("2.I would like to return a book");
+            System.out.println("3.I would like to sign up as a member");
+            System.out.println("4.I would like to stop being a member");
+            System.out.println("5.Was just passing by. GoodBye");
+        }while(choice!=5);
 
     }
+
+
 
     public void addTitle(Title title){
         titles.add(title);
