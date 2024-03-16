@@ -1,12 +1,12 @@
-public class BookCopy implements Borrowable{
+public class BookCopy extends Book implements Borrowable{
     private int id;
     private boolean isAvailable;
-    private Book book;
 
-    public BookCopy(int id,Book book){
+
+    public BookCopy(int titleId ,String title, String author,int id){
+        super(titleId,title,author);
         this.id=id;
         this.isAvailable=true;
-        this.book=book;
     }
 
     public void borrowItem(){
@@ -35,20 +35,13 @@ public class BookCopy implements Borrowable{
         isAvailable = available;
     }
 
-    public Book getBook() {
-        return book;
-    }
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
 
     @Override
     public String toString() {
         return "BookCopy{" +
                 "id=" + id +
                 ", isAvailable=" + isAvailable +
-                ", book=" + book +
                 '}';
     }
 }

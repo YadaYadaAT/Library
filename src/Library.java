@@ -9,6 +9,9 @@ private List<Borrowable> borrowables=new ArrayList<>();
 private Scanner myScanObj=new Scanner(System.in);
 
     public Library(){
+        Title aBook=new Book();
+
+
         System.out.println("Hello");
         System.out.println("How I may serve you?");
         int choice;
