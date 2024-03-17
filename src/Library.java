@@ -1,3 +1,6 @@
+import DAO.MemberDAO;
+import DAO.TitleDAO;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,8 +12,8 @@ private List<Borrowable> borrowables=new ArrayList<>();
 private Scanner myScanObj=new Scanner(System.in);
 
     public Library(){
-    MemberDAO memberDAO=new MemberDAO();
-    TitleDAO titleDAO=new TitleDAO();
+//    MemberDAO memberDAO=new MemberDAO();
+//    TitleDAO titleDAO=new TitleDAO();
 
 
 //        Title aBook=new Book();

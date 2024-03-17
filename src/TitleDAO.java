@@ -1,3 +1,4 @@
-public class TitleDAO {
+
+public interface TitleDAO {
 
 }

@@ -1,9 +1,6 @@
 public class Book extends Title{
     private String author;
 
-    public Book(){
-
-    }
 
     public Book(int id, String title, String author) {
         super(id, title);
