@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MemberDAOImpl implements MemberDAO{
 
@@ -73,5 +74,13 @@ public class MemberDAOImpl implements MemberDAO{
         if (connection != null && !connection.isClosed()) {
             connection.close();
         }
+    }
+
+    public ArrayList<Object> getMemberArrayList() {
+        ArrayList<Object> memberObjectList = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+            memberObjectList.add(findById(i));
+        }
+        return memberObjectList;
     }
 }
