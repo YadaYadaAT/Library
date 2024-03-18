@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TitleDAOImpl implements TitleDAO {
+public class BookDAOImpl implements BookDAO {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/mydatabase";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
@@ -20,7 +20,7 @@ public class TitleDAOImpl implements TitleDAO {
     private Connection connection;
 
     // Constructor to establish database connection
-    public TitleDAOImpl() throws SQLException {
+    public BookDAOImpl() throws SQLException {
         connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
     }
 
@@ -76,18 +76,30 @@ public class TitleDAOImpl implements TitleDAO {
         }
     }
 
+    @Override
+    public ArrayList<Book> findAllBooks(){
+        ArrayList<Book> allBooks = new ArrayList<>();
+        try {
+            String SELECT_ALL_BOOKS = "SELECT * FROM Book";
+            PreparedStatement stmt = connection.prepareStatement(SELECT_ALL_BOOKS);
+            ResultSet rslt = stmt.executeQuery();
+            while (rslt.next()) {
+                int id = rslt.getInt("id");
+                String title = rslt.getString("title");
+                String author = rslt.getString("author");
+                Book book = new Book(id, title, author);
+                allBooks.add(book);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allBooks;
+    }
+
     // Close database connection
     public void close() throws SQLException {
         if (connection != null && !connection.isClosed()) {
             connection.close();
         }
-    }
-
-    public ArrayList<Object> getTitleArrayList() {
-        ArrayList<Object> titleObjectList = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            titleObjectList.add(findById(i));
-        }
-        return titleObjectList;
     }
 }

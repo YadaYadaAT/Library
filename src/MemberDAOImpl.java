@@ -70,17 +70,29 @@ public class MemberDAOImpl implements MemberDAO{
         }
     }
 
+    @Override
+    public ArrayList<Member> findAllMembers(){
+        ArrayList<Member> membersList = new ArrayList<>();
+        try {
+            String SELECT_ALL_MEMBERS = "SELECT * FROM Member";
+            PreparedStatement stmt = connection.prepareStatement(SELECT_ALL_MEMBERS);
+            ResultSet rslt = stmt.executeQuery();
+            while (rslt.next()) {
+                int id = rslt.getInt("id");
+                String name = rslt.getString("name");
+                int MAX_ON_LOAN = rslt.getInt("MAX_ON_LOAN");
+                Member member = new Member(id, name, MAX_ON_LOAN);
+                membersList.add(member);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return membersList;
+    }
+
     public void close() throws SQLException {
         if (connection != null && !connection.isClosed()) {
             connection.close();
         }
-    }
-
-    public ArrayList<Object> getMemberArrayList() {
-        ArrayList<Object> memberObjectList = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            memberObjectList.add(findById(i));
-        }
-        return memberObjectList;
     }
 }

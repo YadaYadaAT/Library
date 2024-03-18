@@ -1,8 +1,0 @@
-
-public interface TitleDAO {
-    Book findById(int id);
-    void save(Book book);
-    void update(Book book);
-    void delete(Book book);
-
-}
