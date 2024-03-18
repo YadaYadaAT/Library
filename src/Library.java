@@ -32,8 +32,8 @@ private Scanner myScanObj=new Scanner(System.in);
         titles.add(title);
     }
 
-    public void addMember(int id, String name, int Max_ON_LOAN){
-        members.add(new Member(5,name,Max_ON_LOAN));
+    public void addMember(int id, String name, int Max_ON_LOAN, int cost){
+        members.add(new Member(5,name,Max_ON_LOAN, cost));
     }
 
     public void addBorrowable(Borrowable borrowable){

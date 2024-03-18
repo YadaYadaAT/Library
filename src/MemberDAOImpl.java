@@ -25,7 +25,7 @@ public class MemberDAOImpl implements MemberDAO{
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return new Member(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("MaxOnLoan"));
+                return new Member(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("MaxOnLoan"), resultSet.getInt("cost"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,7 +81,8 @@ public class MemberDAOImpl implements MemberDAO{
                 int id = rslt.getInt("id");
                 String name = rslt.getString("name");
                 int MAX_ON_LOAN = rslt.getInt("MAX_ON_LOAN");
-                Member member = new Member(id, name, MAX_ON_LOAN);
+                int cost = rslt.getInt("cost");
+                Member member = new Member(id, name, MAX_ON_LOAN, cost);
                 membersList.add(member);
             }
         } catch (SQLException e) {

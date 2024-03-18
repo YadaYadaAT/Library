@@ -2,11 +2,13 @@ public class Member {
     private int id;
     private String name;
     private int MAX_ON_LOAN;
+    private int cost;
 
-    public Member(int id, String name, int MAX_ON_LOAN) {
+    public Member(int id, String name, int MAX_ON_LOAN, int cost) {
         this.id = id;
         this.name = name;
         this.MAX_ON_LOAN = MAX_ON_LOAN;
+        this.cost = cost;
     }
 
     public int getId() {
@@ -31,6 +33,14 @@ public class Member {
 
     public void setMAX_ON_LOAN(int MAX_ON_LOAN) {
         this.MAX_ON_LOAN = MAX_ON_LOAN;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
     @Override

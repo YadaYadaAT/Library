@@ -1,8 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class BookCopyDAOImpl implements BookCopyDAO {
@@ -98,7 +94,6 @@ public class BookCopyDAOImpl implements BookCopyDAO {
         return allCopies;
     }
 
-    @Override
     public ArrayList<BookCopy> findBorrowedCopies(){
         ArrayList<BookCopy> borrowedCopies = new ArrayList<>();
         try {
@@ -116,7 +111,6 @@ public class BookCopyDAOImpl implements BookCopyDAO {
         return borrowedCopies;
     }
 
-    @Override
     public ArrayList<BookCopy> findAvailableCopies(){
         ArrayList<BookCopy> availableCopies = new ArrayList<>();
         try {
@@ -132,6 +126,26 @@ public class BookCopyDAOImpl implements BookCopyDAO {
             e.printStackTrace();
         }
         return availableCopies;
+    }
+
+    @Override
+    public ArrayList<Integer> findAvailableCopiesId(){
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (BookCopy bookCopy : findAvailableCopies()) {
+            ids.add(bookCopy.getId());
+        }
+        return ids;
+    }
+
+    @Override
+    public ArrayList<Integer> findBorrowedCopiesId() {
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (BookCopy bookCopy : findAllBookCopies()) {
+            if (!bookCopy.isAvailable()) {
+                ids.add(bookCopy.getId());
+            }
+        }
+        return ids;
     }
 
     // Close database connection

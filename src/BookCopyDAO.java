@@ -6,6 +6,6 @@ public interface BookCopyDAO {
     void update(BookCopy bookCopy);
     void delete(BookCopy bookCopy);
     public ArrayList<BookCopy> findAllBookCopies();
-    public ArrayList<BookCopy> findBorrowedCopies();
-    public ArrayList<BookCopy> findAvailableCopies();
+    public ArrayList<Integer> findAvailableCopiesId();
+    public ArrayList<Integer> findBorrowedCopiesId();
 }
