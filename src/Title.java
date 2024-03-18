@@ -1,6 +1,7 @@
 public class Title {
     private int id;
     private String title;
+    private String type;
 
     public Title(){
 

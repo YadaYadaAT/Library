@@ -7,10 +7,10 @@ public class MemberDAOImpl implements MemberDAO{
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
 
-    private static final String SELECT_BY_ID = "SELECT * FROM users WHERE id = ?";
-    private static final String INSERT = "INSERT INTO users (id, name, MaxOnLoan) VALUES (?, ?, ?)";
-    private static final String UPDATE = "UPDATE users SET name = ?, MaxOnLoan = ? WHERE id = ?";
-    private static final String DELETE = "DELETE FROM users WHERE id = ?";
+    private static final String SELECT_BY_ID = "SELECT * FROM Member WHERE id = ?";
+    private static final String INSERT = "INSERT INTO Member (id, name, MaxOnLoan, cost) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE Member SET name = ?, MaxOnLoan = ? WHERE id = ?";
+    private static final String DELETE = "DELETE FROM Member WHERE id = ?";
 
     private final Connection connection;
 
@@ -40,6 +40,7 @@ public class MemberDAOImpl implements MemberDAO{
             statement.setInt(1, member.getId());
             statement.setString(2, member.getName());
             statement.setInt(3, member.getMAX_ON_LOAN());
+            statement.setInt(4, member.getCost());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,9 +51,10 @@ public class MemberDAOImpl implements MemberDAO{
     public void update(Member member) {
         try {
             PreparedStatement statement = connection.prepareStatement(UPDATE);
-            statement.setString(1, member.getName());
-            statement.setInt(2, member.getMAX_ON_LOAN());
-            statement.setInt(3, member.getId());
+            statement.setInt(1, member.getId());
+            statement.setString(2, member.getName());
+            statement.setInt(3, member.getMAX_ON_LOAN());
+            statement.setInt(4, member.getCost());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
